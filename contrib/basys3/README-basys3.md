@@ -19,7 +19,7 @@ Dar's [Arcade_Pooyan](https://github.com/darfpga/Arcade_Pooyan) DE10-Lite design
 export ROMZIP=~/roms/pooyan.zip
 
 # Full build from clean upstream
-make setup       # apply patches, generate wrapper, run prep_roms
+make setup       # sanity-check upstream + run prep_roms
 make clk_wiz     # generate MMCM IP (or open in Vivado GUI)
 make synth       # synthesis (runs from /tmp)
 make bitstream   # implementation + write_bitstream
@@ -66,10 +66,12 @@ Coinage: 1 coin / 1 credit. All-down = factory defaults.
 
 ## Patches
 
-All modifications to upstream Dar sources are captured as patches applied during
-`make setup`:
+All modifications to upstream Dar sources are captured as patches:
 
-1. **T80 XOR width fix** — Vivado operand-width error in `rtl_t80_350/T80.vhd`
-2. **Basys3 wrapper** — DE10-Lite wrapper adapted for Basys3 pins/clocks/scandoubler
+1. **T80 XOR width fix** — upstream `rtl_t80_350/T80.vhd` already contains the
+   Vivado operand-width fix (line 738); `make setup` detects it and skips.
+2. **Basys3 top-level wrapper** — DE10-Lite wrapper adapted for Basys3
+   pins/clocks/scandoubler, authored directly into `sources_1/new/` by
+   `make_de10_lite_to_basys3_wrapper.sh` during `make create_prj`.
 
 See [PORTING_SPEC.md](PORTING_SPEC.md) for full details.

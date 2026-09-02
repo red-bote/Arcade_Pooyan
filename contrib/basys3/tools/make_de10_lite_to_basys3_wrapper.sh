@@ -1,25 +1,24 @@
 #!/usr/bin/env bash
-# make_de10_lite_to_basys3_patch.sh — generate Arcade_Pooyan Basys3 wrapper patch
+# make_de10_lite_to_basys3_wrapper.sh — author the Arcade_Pooyan Basys3 top level
 #
-# Usage:  bash contrib/basys3/tools/make_de10_lite_to_basys3_patch.sh [REPODIR]
+# Usage:  bash contrib/basys3/tools/make_de10_lite_to_basys3_wrapper.sh [REPODIR]
 #   REPODIR defaults to two levels up from this script.
 #
-# Produces:
-#   contrib/code/arcade_pooyan_de10_lite_to_basys3.patch
+# Produces (directly, no intermediate copy):
+#   basys3/arcade_pooyan_basys3.srcs/sources_1/new/arcade_pooyan_basys3.vhd
 #
 set -euo pipefail
 
 REPODIR="${1:-$(cd "$(dirname "$0")/../../.." && pwd)}"
-PATCHDIR="${REPODIR}/contrib/code"
 ORIG="${REPODIR}/rtl_dar/pooyan_de10_lite.vhd"
-TARGET="${REPODIR}/basys3/arcade_pooyan_basys3.vhd"
+TARGET="${REPODIR}/basys3/arcade_pooyan_basys3.srcs/sources_1/new/arcade_pooyan_basys3.vhd"
 
 if [ ! -f "${ORIG}" ]; then
   echo "ERROR: Original DE10-Lite wrapper not found: ${ORIG}" >&2
   exit 1
 fi
 
-mkdir -p "${PATCHDIR}" "$(dirname "${TARGET}")"
+mkdir -p "$(dirname "${TARGET}")"
 
 # ---------- write the Basys3 wrapper ----------
 cat > "${TARGET}" << 'VHDL_END'
@@ -321,17 +320,4 @@ seg <= seg8(6 downto 0);
 end struct;
 VHDL_END
 
-# ---------- generate the diff ----------
-# Ensure CRLF stripping for diff context lines
-if command -v dos2unix >/dev/null 2>&1; then
-  dos2unix "${TARGET}" 2>/dev/null || true
-fi
-
-# Generate the patch: diff original DE10-Lite wrapper against new Basys3 wrapper
-# Using -u format; file paths are relative to repo root
-diff -u "rtl_dar/pooyan_de10_lite.vhd" "basys3/arcade_pooyan_basys3.vhd" \
-  --label "a/rtl_dar/pooyan_de10_lite.vhd" \
-  --label "b/rtl_dar/pooyan_basys3.vhd" \
-  > "${PATCHDIR}/arcade_pooyan_de10_lite_to_basys3.patch" || true
-
-echo "Generated: ${PATCHDIR}/arcade_pooyan_de10_lite_to_basys3.patch"
+echo "Wrote: ${TARGET}"

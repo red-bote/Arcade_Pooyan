@@ -16,9 +16,9 @@ create_prj:
 clk_wiz: setup create_prj
 	$(VIVADO)/make_clk_wiz_0.sh
 
-# Regenerate arcade_pooyan_de10_lite_to_basys3.patch and arcade_pooyan_basys3.vhd top level.
+# Regenerate the arcade_pooyan_basys3.vhd top-level wrapper.
 patch: setup
-	$(BASYS3_TOOLS)/make_de10_lite_to_basys3_patch.sh
+	$(BASYS3_TOOLS)/make_de10_lite_to_basys3_wrapper.sh
 
 # Run synthesis only (resets synth_1 first).
 synth: setup clk_wiz patch
