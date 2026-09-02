@@ -77,9 +77,21 @@ set_property -dict { PACKAGE_PIN J2   IOSTANDARD LVCMOS33  PULLUP true } [get_po
 set_property -dict { PACKAGE_PIN G2   IOSTANDARD LVCMOS33  PULLUP true } [get_ports {JA[3]}];#Sch name = JA4 (up)
 set_property -dict { PACKAGE_PIN H1   IOSTANDARD LVCMOS33  PULLUP true } [get_ports {JA[4]}];#Sch name = JA7 (fire)
 
-##Pmod Header JB -- PS/2 keyboard (directly named, active-low with PULLUP)
-set_property -dict { PACKAGE_PIN A14   IOSTANDARD LVCMOS33  PULLUP true } [get_ports ps2_dat];#Sch name = JB1
-set_property -dict { PACKAGE_PIN B15   IOSTANDARD LVCMOS33  PULLUP true } [get_ports ps2_clk];#Sch name = JB3
+##Pmod Header JB
+#set_property -dict { PACKAGE_PIN A14   IOSTANDARD LVCMOS33 } [get_ports {JB[0]}];#Sch name = JB1
+#set_property -dict { PACKAGE_PIN A16   IOSTANDARD LVCMOS33 } [get_ports {JB[1]}];#Sch name = JB2
+#set_property -dict { PACKAGE_PIN B15   IOSTANDARD LVCMOS33 } [get_ports {JB[2]}];#Sch name = JB3
+#set_property -dict { PACKAGE_PIN B16   IOSTANDARD LVCMOS33 } [get_ports {JB[3]}];#Sch name = JB4
+#set_property -dict { PACKAGE_PIN A15   IOSTANDARD LVCMOS33 } [get_ports {JB[4]}];#Sch name = JB7
+#set_property -dict { PACKAGE_PIN A17   IOSTANDARD LVCMOS33 } [get_ports {JB[5]}];#Sch name = JB8
+#set_property -dict { PACKAGE_PIN C15   IOSTANDARD LVCMOS33 } [get_ports {JB[6]}];#Sch name = JB9
+#set_property -dict { PACKAGE_PIN C16   IOSTANDARD LVCMOS33 } [get_ports {JB[7]}];#Sch name = JB10
+
+##USB HID (PS/2) -- Basys3 J2 USB host: PIC24FJ128 emulates PS/2 to the FPGA.
+#USB keyboard plugs into the board's J2 "USB" type-A connector; the auxiliary
+#microcontroller hides USB-HID and presents a standard PS/2 bus on C17/B17.
+set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33  PULLUP true } [get_ports ps2_clk]
+set_property -dict { PACKAGE_PIN B17   IOSTANDARD LVCMOS33  PULLUP true } [get_ports ps2_dat]
 
 ##Pmod Header JC -- Audio (directly named)
 set_property -dict { PACKAGE_PIN K17   IOSTANDARD LVCMOS33 } [get_ports O_PMODAMP2_AIN];#Sch name = JC1

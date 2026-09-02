@@ -1,0 +1,17 @@
+# Arcade_Pooyan Basys3 port
+#
+# Ignore the whole Vivado build tree for the Basys3 project (project dirs,
+# runs, artifacts). The .xpr is regenerated from contrib/basys3/vivado/ by
+# make create_prj; the top level by make patch.
+basys3/
+
+# Generated PROM VHDL, intermediate ROM binaries and the unzipped romset.
+# All produced by make setup / prep_roms.sh into tools/pooyan_unzip/.
+# (tracked upstream files there — make_pooyan_proms.bat, make_pooyan_proms.sh,
+# make_pooyan_proms_rb.sh, make_vhdl_prom, make_vhdl_prom.exe — are unaffected
+# by these patterns)
+tools/pooyan_unzip/*.vhd
+tools/pooyan_unzip/*.bin
+tools/pooyan_unzip/[1-8].*
+tools/pooyan_unzip/pooyan.pr[123]
+tools/pooyan_unzip/xx.*

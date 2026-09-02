@@ -6,7 +6,7 @@ Dar's [Arcade_Pooyan](https://github.com/darfpga/Arcade_Pooyan) DE10-Lite design
 ## Hardware Requirements
 
 - Digilent Basys 3 (Artix-7 `xc7a35tcpg236-1`)
-- PS/2 keyboard on JB Pmod (JB1 = data, JB3 = clock)
+- USB keyboard (J2 USB-HID host, PIC24FJ128 → PS/2 on C17/B17)
 - Joystick on JA Pmod (active-low: JA1=right, JA2=left, JA3=down, JA4=up, JA7=fire)
 - Audio via PmodAMP2 on JC Pmod (JC1=AIN, JC2=GAIN on sw15, JC4=SHUTDOWN on sw14)
 - VGA monitor on the Basys 3 VGA connector
@@ -45,7 +45,7 @@ Coinage: 1 coin / 1 credit. All-down = factory defaults.
 
 ## Controls
 
-**Keyboard (PS/2 on JB):**
+**Keyboard (USB on J2):**
 - F4 = Start 1 player
 - F5 = Start 2 players
 - F3 = Add coin

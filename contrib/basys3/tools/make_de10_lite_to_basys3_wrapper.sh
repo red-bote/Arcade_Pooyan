@@ -30,7 +30,8 @@ cat > "${TARGET}" << 'VHDL_END'
 --
 -- Ported from pooyan_de10_lite.vhd (DE10-Lite):
 --  - 100 MHz board oscillator; clk_wiz_0 MMCM derives 12 MHz (core) + 14 MHz (sound)
---  - PS/2 keyboard on JB; Atari-style joystick on JA, OR-merged with keyboard
+--  - USB keyboard (J2 USB-HID host, PIC24FJ128 → PS/2 on C17/B17); Atari-style
+--    joystick on JA, OR-merged with keyboard
 --    (Somhi kbd_joystick: arrows/space; F3 coin, F4 start1, F5 start2)
 --  - PWM audio on JC via PmodAMP2 (AIN + GAIN/Shutdown on sw15/sw14); 31 kHz VGA on the Basys3 VGA connector via DECA vga_scandoubler
 --  - btnC = reset

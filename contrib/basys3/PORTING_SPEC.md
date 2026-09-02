@@ -114,7 +114,7 @@ Coinage A: 1 coin / 1 credit. All-down = DE10-Lite defaults (`X"FF"` / `X"7F"`).
 
 ## 6. Input Mapping
 
-### PS/2 Keyboard (JB Pmod)
+### USB Keyboard (Basys3 J2 USB-HID host → PS/2 on C17/B17)
 | Key | Function |
 |-----|----------|
 | F3 | Add coin |
